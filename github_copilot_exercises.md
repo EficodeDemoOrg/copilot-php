@@ -4,7 +4,34 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 
 ## Phase 1: Getting Started with Copilot Basics
 
-### Exercise 1.1: First Steps with Code Suggestions
+### Exercise 1.1: Understanding Your Project with Chat Participants
+
+**Welcome to the PHP Task Manager!** Before diving into code generation, let's use GitHub Copilot to understand the project you'll be working with.
+
+1. **@workspace Participant - Project Overview**
+   - Press `Ctrl+Shift+I` (or `Cmd+Shift+I`) to open Copilot Chat and select "Ask" mode
+   - Ask: `@workspace Tell me about this project?`
+   - Try: `@workspace /explain Give me a comprehensive overview of this PHP task manager application`
+   - Request: `@workspace What are the main features and components I should know about?`
+
+2. **@workspace Participant - Code Structure**
+   - Ask: `@workspace How are the files and folders organized in this project?`
+   - Try: `@workspace Show me all the validation patterns used`
+   - Request: `@workspace How are dependencies managed across the codebase?`
+
+3. **@vscode Participant - Development Setup**
+   - Ask: `@vscode What extensions would help with PHP development in this project?`
+   - Try: `@vscode How do I configure PHP debugging for this project?`
+   - Request: `@vscode How to set up tasks for this project?`
+
+4. **@terminal Participant - Running the Project**
+   - Ask: `@terminal What's the best way to start a PHP development server for this project?`
+   - Try: `@terminal Show me common Composer commands for this project`
+   - Request: `@terminal How do I run PHP tests from command line?`
+
+**Learning Goal:** Use different chat participants to get familiar with the project structure, setup, and workflow before starting development.
+
+### Exercise 1.2: First Steps with Code Suggestions
 
 1. **Explore Auto-Suggestions**
    - Open `src/Models/Task.php`
@@ -24,7 +51,7 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 
 **Learning Goal:** Understand how Copilot uses context and comments to generate relevant code suggestions.
 
-### Exercise 1.2: Exploring the Suggestion Interface
+### Exercise 1.3: Exploring the Suggestion Interface
 
 1. **Navigation Practice**
    - Open `src/Utils/Validator.php`
@@ -38,7 +65,7 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 
 **Learning Goal:** Master the Copilot interface and keyboard shortcuts.
 
-### Exercise 1.3: Introduction to Copilot Chat
+### Exercise 1.4: Introduction to Copilot Chat
 
 1. **Opening Chat**
    - Press `Ctrl+Shift+I` (or `Cmd+Shift+I`) to open Copilot Chat
@@ -53,7 +80,7 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 
 **Learning Goal:** Get comfortable with basic Copilot Chat interactions.
 
-### Exercise 1.4: Understanding Interaction Modes
+### Exercise 1.5: Understanding Interaction Modes
 
 1. **Ask Mode Practice**
    - In Copilot Chat, ask questions about code without expecting changes
@@ -72,6 +99,42 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
    - Try: `/new Generate a configuration class for this project`
 
 **Learning Goal:** Understand when and how to use different Copilot interaction modes.
+
+### Exercise 1.6: Setting Up Project Context with Copilot Instructions
+
+**Why This Matters:** Creating a `copilot-instructions.md` file helps Copilot understand your project's specific patterns, conventions, and architecture, leading to more accurate and relevant suggestions throughout your development session.
+
+1. **Generate Instructions Using VS Code**
+   - Look for the **gear icon (⚙️)** in the VS Code interface (usually in the status bar or activity bar)
+   - Click on the gear icon and select **"Generate Instructions for Copilot"**
+   - VS Code will analyze your codebase and create a `.github/copilot-instructions.md` file
+   - Wait for the generation process to complete
+
+2. **Review the Generated Instructions**
+   - Open the newly created `.github/copilot-instructions.md` file
+   - Read through the generated content to understand what Copilot discovered about your project
+   - Notice how it identifies:
+     - Project architecture and patterns
+     - Key conventions and coding styles
+     - Important file structures and relationships
+     - Development workflows and commands
+
+3. **Test the Instructions with Copilot**
+   - Open Copilot Chat (`Ctrl+Shift+I` or `Cmd+Shift+I`)
+   - Ask: "Based on the project instructions, explain the main architecture of this application"
+   - Try: "Following this project's patterns, how would I add a new field to the Task model?"
+   - Request: "What are the key conventions I should follow when adding a new controller?"
+   - Compare the responses to earlier interactions - they should be more specific and aligned with your project
+
+4. **Refine the Instructions (Optional)**
+   - If you notice any missing patterns or inaccurate information in the generated instructions
+   - Edit the `.github/copilot-instructions.md` file to add project-specific details
+   - Consider adding information about:
+     - Specific coding conventions you follow
+     - Common debugging approaches
+     - Testing strategies used in the project
+
+**Learning Goal:** Understand how to leverage VS Code's instruction generation feature to provide Copilot with better project context, resulting in more accurate and relevant code suggestions.
 
 ---
 
@@ -106,7 +169,20 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 
 **Learning Goal:** Learn to use `/new` for generating new code components.
 
-### Exercise 2.3: Generating Tests with `/tests`
+### Exercise 2.3: Creating Project Structure with `/new`
+
+1. **Folder and File Structure Creation**
+   - Try: `/new Create a new folder structure for API endpoints with controllers and routes`
+   - Experiment: `/new Generate a plugins directory with sample plugin architecture`
+   - Advanced: `/new Create a complete testing structure with unit and integration test folders`
+
+2. **Multi-file Component Generation**
+   - Request: `/new Create a user management module with model, controller, service, and view files`
+   - Try: `/new Generate a reporting system with data processors and output formatters`
+
+**Learning Goal:** Learn to use `/new` for generating complete folder structures and multi-file components.
+
+### Exercise 2.4: Generating Tests with `/tests`
 
 1. **Unit Test Generation**
    - Open `src/Models/Task.php`
@@ -128,6 +204,11 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 ---
 
 ## Phase 3: Chat Variables and Context Control
+
+> **💡 Context Setup Guide**  
+> 
+> **Using #file**: Start typing `#` and begin typing the filename you want to add as context. VS Code will show you a dropdown of available files to choose from. Select the file you want and it will appear as `#file` in your prompt.
+> 
 
 ### Exercise 3.1: Chat Variables Deep Dive  
 
@@ -152,25 +233,6 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 
 **Learning Goal:** Master chat variables for precise context control and analysis.
 
-### Exercise 3.2: Chat Participants Mastery
-
-1. **@workspace Participant**
-   - Ask: `@workspace What is the overall architecture of this project?`
-   - Try: `@workspace How are dependencies managed across the codebase?`
-   - Request: `@workspace Show me all the validation patterns used`
-
-2. **@vscode Participant**  
-   - Ask: `@vscode How do I configure PHP debugging in this project?`
-   - Try: `@vscode What extensions would help with PHP development?`
-   - Request: `@vscode How to set up tasks for this project?`
-
-3. **@terminal Participant**
-   - Ask: `@terminal How do I run PHP tests from command line?`
-   - Try: `@terminal What's the best way to start a PHP development server?`
-   - Request: `@terminal Show me common Composer commands for this project`
-
-**Learning Goal:** Master different chat participants and understand their specialized contexts.
-
 ---
 
 ## Phase 4: Advanced Context and File Analysis
@@ -189,19 +251,6 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 
 **Learning Goal:** Learn to leverage file context for deeper code understanding.
 
-### Exercise 4.2: Workspace-Wide Understanding
-
-1. **Architecture Questions**
-   - Ask: "Explain the overall architecture of #codebase"
-   - Request: "What are the main security considerations in this project?"
-   - Query: "How is data persistence handled across the application?"
-
-2. **Pattern Recognition**
-   - Ask: "What MVC patterns are implemented in this codebase?"
-   - Request: "Show me how validation is handled throughout the project"
-
-**Learning Goal:** Understand how to analyze entire codebases and architectural patterns.
-
 ---
 
 ## Phase 5: Practical Development Scenarios
@@ -209,9 +258,9 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 ### Exercise 5.1: Feature Development Guidance
 
 1. **Planning New Features**
-   - Ask: "I want to add task priorities. How should I implement this feature?"
-   - Request: "Walk me through adding user authentication to this application"
-   - Query: "How would I add task categories without breaking existing functionality?"
+   - "I want to add task priorities. How should I implement this feature?"
+   - "Walk me through adding user authentication to this application"
+   - "How would I add task categories without breaking existing functionality?"
 
 2. **Implementation Guidance**
    - Ask: "Show me step-by-step how to add task due dates"
@@ -239,25 +288,25 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 ### Exercise 6.1: Security-Focused Reviews
 
 1. **Security Agent Role**
-   - Ask: "Act as a security expert and review the validation in src/Utils/Validator.php"
-   - Request: "As a security specialist, what vulnerabilities do you see in the TaskController?"
-   - Query: "From a security perspective, how should I improve the CommentController?"
+   - "Act as a security expert and review the validation in src/Utils/Validator.php"
+   - "As a security specialist, what vulnerabilities do you see in the TaskController?"
+   - "From a security perspective, how should I improve the CommentController?"
 
 2. **Security Best Practices**
-   - Ask: "What OWASP top 10 issues should I check for in this PHP application?"
-   - Request specific security improvements for user input handling
+   - "What OWASP top 10 issues should I check for in this PHP application?"
+   - "Provide specific security improvements for user input handling"
 
 **Learning Goal:** Learn to use Copilot for security-focused code reviews.
 
 ### Exercise 6.2: Performance and Code Quality
 
 1. **Performance Expert Role**
-   - Ask: "As a performance expert, analyze the efficiency of TaskService.php"
-   - Request: "How can I optimize the data loading in the Controllers?"
+   - "As a performance expert, analyze the efficiency of TaskService.php"
+   - "How can I optimize the data loading in the Controllers?"
 
 2. **Code Quality Reviewer**
-   - Ask: "Act as a senior PHP developer and review the code quality in src/Models/"
-   - Request: "What PSR standards should I implement in this codebase?"
+   - "Act as a senior PHP developer and review the code quality in src/Models/"
+   - "What PSR standards should I implement in this codebase?"
 
 **Learning Goal:** Understand how different expert perspectives can improve your code.
 
@@ -383,24 +432,24 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 ### Exercise 9.1: Code Refactoring Challenges
 
 1. **Refactoring Scenarios**
-   - Ask: "How would you refactor the TaskController to use dependency injection container?"
-   - Request: "Show me how to implement the Repository pattern for data access"
+   - "How would you refactor the TaskController to use dependency injection container?"
+   - "Show me how to implement the Repository pattern for data access"
 
 2. **Design Pattern Implementation**
-   - Ask: "How could I implement the Observer pattern for task status changes?"
-   - Request: "Show me how to add a Factory pattern for creating different task types"
+   - "How could I implement the Observer pattern for task status changes?"
+   - "Show me how to add a Factory pattern for creating different task types"
 
 **Learning Goal:** Explore advanced programming concepts with Copilot's guidance.
 
-### Exercise 6.2: Alternative Implementations
+### Exercise 9.2: Alternative Implementations
 
 1. **Different Approaches**
-   - Ask: "Show me 3 different ways to implement task filtering"
-   - Request: "What are alternative approaches to JSON file storage?"
+   - "Show me 3 different ways to implement task filtering"
+   - "What are alternative approaches to JSON file storage?"
 
 2. **Technology Comparisons**
-   - Ask: "How would this application look if built with Laravel framework?"
-   - Request: "Compare this implementation with a database-driven approach"
+   - "How would this application look if built with Laravel framework?"
+   - "Compare this implementation with a database-driven approach"
 
 **Learning Goal:** Understand different implementation strategies and trade-offs.
 
