@@ -63,6 +63,26 @@ Before you begin, make sure you have:
 3. **Output Format Specification**: "Provide the response as a numbered list with code examples..."
 4. **Iterative Refinement**: "Improve the previous solution by adding error handling..."
 
+## Advanced Tips for Success
+
+### Context Strategy
+1. **Layer Your Context**: Start broad, then add specific details progressively
+2. **Use Multiple Variables**: Combine `#file`, `#selection`, and `#codebase` strategically  
+3. **Match Participant to Purpose**: Use `@workspace` for code questions, `@vscode` for tooling
+4. **Test Context Combinations**: Experiment to find what works best for your use cases
+
+### Prompt Crafting
+5. **Apply CLEAR Framework**: Always include Context, Language, Examples, Action, Requirements
+6. **Be Iterative**: Build on previous responses with follow-up questions
+7. **Set Constraints**: Specify frameworks, patterns, coding standards upfront
+8. **Use Role-Based Prompts**: "Act as a [security expert/architect/reviewer]..."
+
+### Workflow Optimization  
+9. **Choose the Right Mode**: Ask for understanding, Edit for changes, Agent for creation
+10. **Verify Across Environments**: Cross-check suggestions between VS Code and GitHub.com
+11. **Combine Tools**: Use inline suggestions for quick fixes, chat for complex problems
+12. **Document Patterns**: Keep track of effective prompt patterns for reuse
+
 ## Prerequisites
 - VS Code with GitHub Copilot extension installed
 - Basic understanding of PHP (helpful but not required)
