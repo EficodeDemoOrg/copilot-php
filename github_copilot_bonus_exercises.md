@@ -1,6 +1,6 @@
-# GitHub Copilot Hackathon Part 2: Bonus Exercises
+# GitHub Copilot Workshop: Bonus Exercises
 
-Welcome to Bonus Part of the Copilot PHP Hackathon! These exercises build on your beginner skills and guide you through modernizing, scaling, and securing your PHP Task Manager project. You'll work with containers, databases, APIs, and best practices for real-world development.
+Welcome to Bonus Part of the Copilot PHP Workshop! These exercises build on your beginner skills and guide you through modernizing, scaling, and securing your PHP Task Manager project. You'll work with containers, databases, APIs, and best practices for real-world development.
 
 ---
 
