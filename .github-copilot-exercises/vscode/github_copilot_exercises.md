@@ -1,21 +1,17 @@
 # GitHub Copilot Comprehensive Training Exercises
 
-Welcome to your comprehensive GitHub Copilot training journey! These exercises are designed to progressively learn GitHub Copilot's features starting with foundational concepts and building up to advanced techniques through hands-on practice with our PHP Task Manager project.
+Welcome to your comprehensive GitHub Copilot training journey for PHP development! These exercises are designed to progressively learn GitHub Copilot's features starting with foundational concepts and building up to advanced techniques through hands-on practice with our PHP Task Manager project.
 
 ## Phase 1: Getting Started with Copilot Basics
 
 ### Exercise 1.1: Understanding Your Project with Chat Participants
 
-**Welcome to the PHP Task Manager!** Before diving into code generation, let's use GitHub Copilot to understand the project you'll be working with.
-
-> **💡 IDE-Specific Participants:** 
-> Note that `@vscode` and `@terminal` participants are exclusive to VS Code. Users of other IDEs should utilize `@workspace` and `@editor`. In JetBrains, `@workspace` is replaced by `@project`.
-
+**Welcome to the project!** Before diving into code generation, let's use GitHub Copilot to understand the project you'll be working with.
 
 1. **@workspace Participant - Project Overview**
    - Press `Ctrl+Shift+I` (or `Cmd+Shift+I`) to open Copilot Chat and select "Ask" mode
    - Ask: `@workspace Tell me about this project?`
-   - Try: `@workspace /explain Give me a comprehensive overview of this PHP task manager application`
+   - Try: `@workspace /explain Give me a comprehensive overview of this application`
    - Request: `@workspace What are the main features and components I should know about?`
 
 2. **@workspace Participant - Code Structure**
@@ -24,14 +20,14 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
    - Request: `@workspace How are dependencies managed across the codebase?`
 
 3. **@vscode Participant - Development Setup**
-   - Ask: `@vscode What extensions would help with PHP development in this project?`
-   - Try: `@vscode How do I configure PHP debugging for this project?`
+   - Ask: `@vscode What extensions would help with development in this project?`
+   - Try: `@vscode How do I configure debugging for this project?`
    - Request: `@vscode How to set up tasks for this project?`
 
 4. **@terminal Participant - Running the Project**
-   - Ask: `@terminal What's the best way to start a PHP development server for this project?`
-   - Try: `@terminal Show me common Composer commands for this project`
-   - Request: `@terminal How do I run PHP tests from command line?`
+   - Ask: `@terminal What's the best way to start a development server for this project?`
+   - Try: `@terminal Show me common dependency management commands for this project`
+   - Request: `@terminal How do I run tests from command line?`
 
 **Learning Goal:** Use different chat participants to get familiar with the project structure, setup, and workflow before starting development.
 
@@ -50,8 +46,9 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
    - Notice how descriptive comments lead to better suggestions
 
 3. **Experiment with Function Names**
-   - Start typing `public function formatCreated` and see what Copilot suggests
-   - Try `public function isComplete` and observe the different suggestion
+   - Start typing `public function formatCreatedAt` and see what Copilot suggests
+   - Try `public function isCompleted` and observe the different suggestion
+   - Experiment with `public function toArray` for JSON serialization
 
 **Learning Goal:** Understand how Copilot uses context and comments to generate relevant code suggestions.
 
@@ -60,11 +57,11 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 1. **Navigation Practice**
    - Open `src/Utils/Validator.php`
    - Add a comment: `// Validate email format using regex`
-   - Use `Alt+]` to cycle through different suggestions
-   - Use `Ctrl+Enter` to open the suggestions panel for more options
+   - Hover mouse over the suggestion to see alternative suggestions
+   - Press `tab` to accept a suggestion
 
 2. **Partial Acceptance**
-   - Start typing a function and accept only part of a suggestion using `Ctrl+→`
+   - Start typing a function and accept only part of a suggestion using `Ctrl+→` or `Cmd+→`
    - Try modifying the suggestion before accepting it
 
 **Learning Goal:** Master the Copilot interface and keyboard shortcuts.
@@ -78,7 +75,7 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
    - Ask: "Explain what this file does"
 
 2. **Basic Chat Questions**
-   - Ask: "What are the main components of this PHP application?"
+   - Ask: "What are the main components of this application?"
    - Try: "How is data persistence handled in this project?"
    - Notice how Copilot provides explanations and guidance
 
@@ -97,15 +94,10 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
    - Request: "Add input validation to this method"
    - Observe how Edit mode focuses on direct code changes
 
-   > - Alternatively if #selection is not supported in your IDE:
-   >   - Switch to edit mode
-   >   - Provide file as context
-   >   - Prompt: "Add input validation to the setStatus method in Task.php"
-
 3. **Agent Mode with /new**
-   - Type: `/new Create a simple PHP utility class for date formatting`
-   - Notice how Agent mode creates complete new implementations
-   - Try: `/new Generate a configuration class for this project`
+   - Type: `/new Create a simple PHP utility class for date formatting with timezone support`
+   - Notice how Agent mode creates complete new PHP implementations
+   - Try: `/new Generate a PHP configuration class using constants for this project`
 
 **Learning Goal:** Understand when and how to use different Copilot interaction modes.
 
@@ -118,14 +110,6 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
    - Click on the gear icon and select **"Generate Instructions for Copilot"**
    - VS Code will analyze your codebase and create a `.github/copilot-instructions.md` file
    - Wait for the generation process to complete
-
-> **💡 For Other IDEs (JetBrains, etc.):** If you're not using VS Code, you can create the instructions manually:
->
-> **Generate Instructions Using Copilot**
->    - Create the `.github` folder if it doesn't exist
->    - Open Copilot Chat in Agent mode
->    - Add your project's README.md and main configuration files as context
->    - Request: `@project Based on the project structure and README, create a comprehensive copilot-instructions.md file that defines our coding standards, architectural patterns, and development practices`
 
 2. **Review the Generated Instructions**
    - Open the newly created `.github/copilot-instructions.md` file
@@ -158,10 +142,6 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 ## Phase 2: Mastering Chat Commands
 
 ### Exercise 2.1: Basic Slash Commands
-
-
-> **For JetBrains IDE users:** The `#selection` command is not supported. Instead, open the file, select `getWeatherData()`, open inline chat and use `/explain`.
-
 
 1. **Understanding Code with `/explain`**
    - Select the `getAllTasks()` method in `src/Services/TaskService.php`
@@ -212,13 +192,13 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
    - Examine the generated test structure
 
 2. **Controller Testing**
-   - Select a method from `TaskController.php`
+   - Select a method from `src/Controllers/TaskController.php`
    - Use `/tests` and observe how Copilot handles more complex scenarios
-   - Ask follow-up questions like "How would I mock the dependencies?"
+   - Ask follow-up questions like "How would I mock the TaskService dependencies in PHPUnit?"
 
 3. **Custom Test Scenarios**
-   - Ask: "Generate edge case tests for the Task model validation"
-   - Request: "Create integration tests for the TaskService class"
+   - Ask: `Generate edge case tests for the Task model validation`
+   - Request: `Create integration tests for the TaskService class`
 
 **Learning Goal:** Understand how to generate comprehensive tests and testing strategies.
 
@@ -234,14 +214,14 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 ### Exercise 3.1: Chat Variables Deep Dive  
 
 1. **File Context Variables**
-   - Select `TaskController.php` in Explorer
-   - Ask: `Analyze the code structure in #file`
-   - Try with different files: `What security issues exist in #file?`
+   - Select `src/Controllers/TaskController.php` in Explorer
+   - Ask: `Analyze the PHP code structure and MVC patterns in #file`
+   - Try with different files: `What PHP security issues exist in #file?`
 
 2. **Selection and Editor Variables**
    - Select a method in any PHP file
-   - Ask: `Optimize this code #selection for better performance`
-   - With cursor in editor: `What's the context around #editor position?`
+   - Ask: `Optimize this PHP code #selection for better performance and memory usage`
+   - With cursor in editor: `What's the PHP context around #editor position?`
 
 3. **Codebase Structure Analysis**
    - Ask: `What design patterns are used in #codebase?`
@@ -267,8 +247,8 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
    - Request: "Explain the dependency injection pattern in #file"
 
 2. **Cross-File Analysis**
-   - Ask: "How does TaskController.php interact with TaskService.php?"
-   - Request: "Show me the data flow from TaskController to Task model"
+   - Ask: "How does src/Controllers/TaskController.php interact with src/Services/TaskService.php?"
+   - Request: "Show me the PHP data flow from TaskController to Task model through the service layer"
 
 **Learning Goal:** Learn to leverage file context for deeper code understanding.
 
@@ -279,12 +259,13 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 ### Exercise 5.1: Feature Development Guidance
 
 1. **Planning New Features**
-   - "I want to add task priorities. How should I implement this feature?"
-   - "Walk me through adding user authentication to this application"
-   - "How would I add task categories without breaking existing functionality?"
+   - Open Copilot Chat in Ask mode
+   - `I want to add task priorities. How should I implement this feature?`
+   - `Walk me through adding user authentication to this application`
+   - `How would I add task categories without breaking existing functionality?`
 
 2. **Implementation Guidance**
-   - Ask: "Show me step-by-step how to add task due dates"
+   - Ask: `Show me step-by-step how to add task due dates`
    - Request code examples for each step
    - Ask for migration strategies for existing data
 
@@ -293,12 +274,13 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 ### Exercise 5.2: Debugging and Problem Solving
 
 1. **Common Issues**
-   - Ask: "What could cause the task creation to fail silently?"
-   - Request: "How should I debug JSON storage issues?"
+   - Open Copilot Chat in Ask mode
+   - Ask: `What could cause the PHP task creation to fail silently?`
+   - Request: `How should I debug JSON storage issues in this PHP application?`
 
 2. **Error Handling Improvements**
-   - Ask: "How can I improve error handling throughout this application?"
-   - Request: "Show me best practices for logging in PHP applications"
+   - Ask: `How can I improve PHP error handling and exception management throughout this application?`
+   - Request: `Show me PHP best practices for logging and error reporting in applications`
 
 **Learning Goal:** Develop debugging skills with Copilot assistance.
 
@@ -309,25 +291,27 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 ### Exercise 6.1: Security-Focused Reviews
 
 1. **Security Agent Role**
-   - "Act as a security expert and review the validation in src/Utils/Validator.php"
-   - "As a security specialist, what vulnerabilities do you see in the TaskController?"
-   - "From a security perspective, how should I improve the CommentController?"
+   - Open Copilot Chat
+   - `Act as a security expert and review the validation in src/Utils/Validator.php`
+   - `As a security specialist, what vulnerabilities do you see in the TaskController?`
+   - `From a security perspective, how should I improve the CommentController?`
 
 2. **Security Best Practices**
-   - "What OWASP top 10 issues should I check for in this PHP application?"
-   - "Provide specific security improvements for user input handling"
+   - `What OWASP top 10 issues should I check for in this application?`
+   - `Provide specific security improvements for user input handling`
 
 **Learning Goal:** Learn to use Copilot for security-focused code reviews.
 
 ### Exercise 6.2: Performance and Code Quality
 
 1. **Performance Expert Role**
-   - "As a performance expert, analyze the efficiency of TaskService.php"
-   - "How can I optimize the data loading in the Controllers?"
+   - Open Copilot Chat
+   - `As a PHP performance expert, analyze the efficiency of src/Services/TaskService.php`
+   - `How can I optimize the data loading and JSON processing in the PHP Controllers?`
 
 2. **Code Quality Reviewer**
-   - "Act as a senior PHP developer and review the code quality in src/Models/"
-   - "What PSR standards should I implement in this codebase?"
+   - `Act as a senior PHP developer and review the code quality in the src/Models directory`
+   - `What PHP coding standards (PSR-12) and best practices should I implement in this codebase?`
 
 **Learning Goal:** Understand how different expert perspectives can improve your code.
 
@@ -339,21 +323,21 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 
 1. **Minimal vs. Maximum Context**
    - Ask the same question with different context levels:
-     - Minimal: "How do I add validation?"
-     - Medium: "How do I add validation to #file?"  
-     - Maximum: "@workspace #codebase How do I add consistent validation across all controllers following the existing patterns?"
+     - Minimal: `How do I add validation?`
+     - Medium: `How do I add validation to #file?`
+     - Maximum: `@workspace #codebase How do I add consistent validation across all controllers following the existing patterns?`
    - Compare response quality and relevance
 
 2. **Context Layering Technique**
-   - Start broad: "@workspace What's the validation strategy?"
-   - Layer specific: "#file How does this controller handle validation?"
-   - Drill down: "#selection Improve this validation logic"
+   - Start broad: `@workspace What's the validation strategy?`
+   - Layer specific: `#file How does this controller handle validation?`
+   - Drill down: `#selection Improve this validation logic`
    - Notice how each layer builds understanding
 
 3. **Cross-Reference Optimization**
-   - Use multiple file references: "Compare validation approaches in TaskController.php vs CommentController.php"
-   - Combine selection with file context: "How does #selection relate to patterns in #file?"
-   - Mix variables effectively: "#codebase #selection Where else is this pattern used?"
+   - Use multiple file references: `Compare validation approaches in src/Controllers/TaskController.php vs src/Controllers/CommentController.php`
+   - Combine selection with file context: `How does #selection relate to PHP patterns in #file?`
+   - Mix variables effectively: `#codebase #selection Where else is this PHP pattern used?`
 
 ### Exercise 7.2: Context Quality Assessment  
 1. **Response Quality Testing**
@@ -373,19 +357,19 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 1. **Scenario: Adding Task Priority Feature - A Multi-Model Workflow**
    
    **Step 1: Analysis with oX**
-   - Switch to oX model and ask: "Looking at the current task management structure in this PHP project, what would be the architectural implications of adding task priorities? What potential issues should I consider?"
-   - Follow up with: "Based on the existing TaskController and Task model, what's the most logical way to integrate priority without breaking current functionality?"
-   
+   - Switch to oX model and ask: `Looking at the current task management structure in this project, what would be the architectural implications of adding task priorities? What potential issues should I consider?`
+   - Follow up with: `Based on the existing TaskController and Task model, what's the most logical way to integrate priority without breaking current functionality?`
+
    **Step 2: Implementation with Sonnet 4**
-   - Switch to Sonnet 4 and say: "Based on the analysis above, generate the code changes needed to add a priority field to the Task model. Include validation and getter/setter methods."
-   - Then: "Now generate the corresponding controller changes to handle priority in task creation and updates."
+   - Switch to Sonnet 4 and say: `Based on the analysis above, generate the PHP code changes needed to add a priority field to the Task model. Include validation and getter/setter methods.`
+   - Then: `Now generate the corresponding PHP controller changes to handle priority in task creation and updates.`
    
    **Step 3: Documentation and Git Summary with GPT-4.1/5-mini**
-   - Switch to GPT-4.1/5-mini and request: "Get the current git status and create a summary of what files would be changed for this priority feature."
-   - Follow with: "Generate a concise commit message and brief documentation for these priority changes."
-   
+   - Switch to GPT-4.1/5-mini and request: `Get the current git status and create a summary of what files would be changed for this priority feature.`
+   - Follow with: `Generate a concise commit message and brief documentation for these priority changes.`
+
    **Step 4: Validation Back to oX**
-   - Return to oX and ask: "Review the generated code changes. Are there any logical flaws or edge cases I should address before implementing?"
+   - Return to oX and ask: `Review the generated code changes. Are there any logical flaws or edge cases I should address before implementing?`
 
 2. **Reflect on the Multi-Model Experience**
    - Compare how each model approached their specialized task
@@ -453,24 +437,25 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 ### Exercise 9.1: Code Refactoring Challenges
 
 1. **Refactoring Scenarios**
-   - "How would you refactor the TaskController to use dependency injection container?"
-   - "Show me how to implement the Repository pattern for data access"
+   - Open Copilot Chat
+   - `How would you refactor the PHP TaskController to use a dependency injection container?`
+   - `Show me how to implement the Repository pattern for PHP data access in this project`
 
 2. **Design Pattern Implementation**
-   - "How could I implement the Observer pattern for task status changes?"
-   - "Show me how to add a Factory pattern for creating different task types"
+   - `How could I implement the Observer pattern for PHP task status changes?`
+   - `Show me how to add a Factory pattern for creating different PHP task types.`
 
 **Learning Goal:** Explore advanced programming concepts with Copilot's guidance.
 
 ### Exercise 9.2: Alternative Implementations
 
 1. **Different Approaches**
-   - "Show me 3 different ways to implement task filtering"
-   - "What are alternative approaches to JSON file storage?"
+   - `Show me 3 different PHP ways to implement task filtering.`
+   - `What are alternative approaches to JSON file storage in PHP applications?`
 
 2. **Technology Comparisons**
-   - "How would this application look if built with Laravel framework?"
-   - "Compare this implementation with a database-driven approach"
+   - `How would this PHP application look if built with Laravel framework?`
+   - `Compare this PHP implementation with a database-driven approach using PDO or Eloquent.`
 
 **Learning Goal:** Understand different implementation strategies and trade-offs.
 
@@ -482,20 +467,20 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
    - Open two separate Copilot chat windows/threads for this exercise
    
    **Thread 1: Lead Developer Role**
-   - In the first chat, establish the role: "Act as a Lead Developer. You are responsible for architectural decisions, code reviews, and ensuring best practices."
-   - Ask: "I need to add user authentication to this PHP task manager. What's the overall architecture and implementation strategy you recommend?"
-   - Follow up: "Create a detailed implementation plan with security considerations and database schema changes."
+   - In the first chat, establish the role: `Act as a Lead Developer. You are responsible for architectural decisions, code reviews, and ensuring best practices.`
+   - Ask: `I need to add user authentication to this task manager. What's the overall architecture and implementation strategy you recommend?`
+   - Follow up: `Create a detailed implementation plan with security considerations and database schema changes.`
    - Use the planning chatmode and prompts from `.github/chatmodes/Plan.chatmode.md` if available.
    
    **Thread 2: Tester/Implementer Role**
-   - In the second chat, establish the role: "Act as a Tester/Implementer. You focus on writing code, creating tests, and ensuring implementation quality."
-   - Share the plan from Thread 1 and ask: "Based on this authentication plan, implement the User model and basic login functionality."
-   - Request: "Generate comprehensive unit tests for the authentication system."
+   - In the second chat, establish the role: `Act as a Tester/Implementer. You focus on writing code, creating tests, and ensuring implementation quality.`
+   - Share the plan from Thread 1 and ask: `Based on this authentication plan, implement the User model and basic login functionality.`
+   - Request: `Generate comprehensive unit tests for the authentication system.`
    - Use implementation chatmode from `.github/chatmodes/Implement.chatmode.md` if available.
 
 2. **Cross-Thread Collaboration**
    - Take the implementation from Thread 2 back to Thread 1 (Lead Developer) for code review
-   - Ask the Lead Developer: "Review this authentication implementation. What improvements or security concerns do you see?"
+   - Ask the Lead Developer: `Review this authentication implementation. What improvements or security concerns do you see?`
    - Bring the feedback back to Thread 2 (Tester/Implementer) to refine the code
    - Continue this back-and-forth until both roles approve the solution
 
