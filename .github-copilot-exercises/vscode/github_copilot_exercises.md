@@ -38,7 +38,7 @@ Welcome to your comprehensive GitHub Copilot training journey for PHP developmen
    - Position your cursor after line 50 and press Enter
    - Type `// Method to check if task is overdue` and press Enter
    - Watch Copilot suggest a method implementation
-   - Try accepting the suggestion with `Tab`, or cycle through alternatives with `Alt+]` and `Alt+[`
+   - Try accepting the suggestion with `Tab`.
 
 2. **Practice with Comments**
    - Add this comment: `// Calculate the age of this task in days`
@@ -59,6 +59,7 @@ Welcome to your comprehensive GitHub Copilot training journey for PHP developmen
    - Add a comment: `// Validate email format using regex`
    - Hover mouse over the suggestion to see alternative suggestions
    - Press `tab` to accept a suggestion
+   - If no suggestions appear, try different comments or method names
 
 2. **Partial Acceptance**
    - Start typing a function and accept only part of a suggestion using `Ctrl+→` or `Cmd+→`
