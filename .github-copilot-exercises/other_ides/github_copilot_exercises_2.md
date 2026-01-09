@@ -2,17 +2,6 @@
 
 Welcome to Session 2! You'll now dive into advanced agent-based development workflows. These exercises implement a structured approach focusing on **multi-agent collaboration** and **complex feature implementation**.
 
-> **💡 About Custom Chatmodes**
->
-> Other IDEs will eventually support custom chatmodes similar to VS Code, allowing you to save and reuse agent configurations. For now, we'll manually prime agents with specific roles and instructions using reusable prompt files. This approach teaches you valuable prompt engineering skills and gives you full control over agent behavior.
->
-> **What this means for you:**
-> - You'll use **agent priming prompts** to define roles (Lead Developer, Implementer, QA Agent)
-> - You'll store reusable prompts in `.github/prompts/` as `.prompt.md` files
-> - For Visual Studio, you'll reference them using `#prompt:custom_prompt_name` in Copilot Chat
-> - For JetBrains, you'll reference them using `/custom_prompt_name` in Copilot Chat
-> - Each new chat session requires manual role definition
-
 ## Model Recommendations
 
 Different agents work best with different AI models:
@@ -54,7 +43,23 @@ You've been tasked with adding a complete user authentication system to the Simp
 
 **Deliverable:** Create a `REQUIREMENT-ANALYSIS.md` file documenting all findings, challenges, and recommendations.
 
-#### Part 1.2: Lead Developer Planning Agent
+#### Part 1.2: Strategic Planning with Plan Agent
+
+1. **Create High-Level Implementation Strategy**
+   - Start a fresh Copilot Chat session
+   - Add context: `#file:REQUIREMENT-ANALYSIS.md`
+   - Ask: `Based on this requirements analysis, create a high-level strategic plan for implementing user authentication. Identify major components, dependencies, and implementation phases.`
+   - Request: `What are the critical architectural decisions that need to be made before detailed planning?`
+   - Highlight potential risks and dependencies
+
+2. **Review and Refine the Strategy**
+   - Review the strategic plan provided
+   - Identify which components are essential for MVP vs. nice-to-have
+   - Ask: `What would be a good MVP (Minimum Viable Product) for this feature?`
+
+**Deliverable:** Document the strategic plan in `docs/epic_user_authentication/STRATEGIC_PLAN.md`
+
+#### Part 1.3: Detailed Task Planning with Lead Developer Agent
 
 **Understanding Agent Priming:**
 Since other IDEs than VS Code doesn't yet have fully automatic custom chatmodes, you'll manually prime the agent with a specific role. This means starting each chat session by telling Copilot what role to play and what rules to follow.
@@ -96,12 +101,15 @@ Plan Requirements:
 Epic name will be provided. Generate all files with proper structure.
 ```
 
-2. **Use the Lead Developer Prompt**
+2. **Convert Strategy into Executable Tasks**
    - Start a **new Copilot Chat session**
    - Reference the prompt file: `#prompt:custom_lead-plan`
       - Or For JetBrains: `/custom_lead-plan`
    - Add your requirements file: `#file:REQUIREMENT-ANALYSIS.md`
+   - Optionally add: `#file:docs/epic_user_authentication/STRATEGIC_PLAN.md` (if created in Part 1.2)
    - Provide the epic name: "The epic name is 'user_authentication'. Create the implementation plan."
+   
+   **Task numbering:** Tasks are numbered sequentially (01, 02, 03...) to enforce execution order. Each task is designed to be completed without blocking on others.
 
 3. **Review the Generated Plan**
    - The agent will create a new epic in `docs/epic_user_authentication/` containing:
@@ -123,7 +131,7 @@ Epic name will be provided. Generate all files with proper structure.
      - `tasks/01_[name].md`, `tasks/02_[name].md`, etc.
      - `MANIFEST.md`
 
-#### Part 1.3: Experimenting with Custom Planning Prompts
+#### Part 1.4: Experimenting with Custom Planning Prompts (Optional)
 
 Instead of using the structured prompt file, you can experiment with generating the plan using your own custom prompts. This is a great way to practice prompt engineering and compare outputs.
 
@@ -299,9 +307,16 @@ The user authentication system from Exercise 1 is feature-complete, but it hasn'
 
 ### Phase 1: Test Strategy and Planning
 
-#### Part 1.1: Test Analysis with a QA Agent
+#### Part 1.0: Create a Custom QA Agent
 
-1. **Create `.github/prompts/custom_qa-analysis.prompt.md`:**
+Before beginning test analysis, create a specialized QA agent to focus on testing concerns.
+
+1. **Create the QA Agent Prompt File**
+   - In your project, create the directory `.github/prompts/` if it doesn't exist
+   - Create a new file: `.github/prompts/custom_qa-analysis.prompt.md`
+
+2. **Define the QA Agent**
+   - Add the following content to `.github/prompts/custom_qa-analysis.prompt.md`:
 
 ```markdown
 You are a QA Engineer specializing in PHP testing and quality assurance.
@@ -329,31 +344,85 @@ Deliverables:
 Use PHPUnit, PHP built-in testing capabilities, and security best practices for PHP 7.4+.
 ```
 
-2. **Analyze the Feature Implementation**
+3. **Verify Prompt Availability**
+   - The prompt file is now ready to be used
+   - You'll reference it in subsequent steps using `/custom_qa-analysis`
+
+**Deliverable:** Custom QA analysis prompt ready to use for test analysis.
+
+#### Part 1.1: Test Analysis with QA Agent
+
+1. **Analyze the Feature Implementation**
    - Open a new Copilot Chat session
+   - Reference: `#prompt:custom_qa-analysis`
+      - Or For JetBrains: `/custom_qa-analysis`
    - Ask: `@workspace Based on the recently added user authentication system, analyze what needs testing.`
    - Follow up: `Generate a comprehensive list of test cases covering unit, integration, and security scenarios.`
    - Request: `What testing frameworks and setup do we need for this PHP 7.4+ project?`
 
-**Deliverable:** Create a `TEST-ANALYSIS.md` file documenting the test cases, security concerns, and setup plan.
+2. **PHP Testing Framework and Setup Recommendations**
+   - Ask: `Given the PHP project structure with PHPUnit, what additional testing patterns would you recommend for web applications?`
+   - Request: `Outline the steps and code needed to enhance the existing PHPUnit setup for testing the new authentication features.`
+   - Analyze: `How should we test session management, input validation, and authentication flows?`
 
-#### Part 1.2: Test Plan Generation with Lead Developer
+**Deliverable:** Create a `docs/TEST-ANALYSIS.md` file documenting the test cases, security concerns, and setup plan.
 
-1. **Generate Test Implementation Plan**
+#### Part 1.2: Test Strategy
+
+For a more strategic approach, you can add a high-level test strategy phase:
+
+1. **Create High-Level Test Strategy**
+   - Start a fresh Copilot Chat session
+   - Attach the `docs/TEST-ANALYSIS.md` file as context
+   - Request: `Create a strategic test plan for the user authentication system. Organize tests by priority (critical, high, medium) and type (unit, integration, security). Identify dependencies between test suites.`
+
+2. **Review and Prioritize**
+   - Review the test strategy provided
+   - Identify which tests are essential for MVP vs. nice-to-have
+   - Request: `What tests are absolutely critical before deploying to production?`
+
+**Deliverable:** Document the test strategy in `docs/epic_user_auth_testing/TEST_STRATEGY.md`
+
+#### Part 1.3: Manual Plan Generation (Alternative Approach)
+
+As an alternative to using structured prompts, you can experiment with generating the plan manually. This is a great way to understand how to craft effective prompts and compare the outputs of different models.
+
+1. **Start a new chat session** with your preferred model (e.g., Claude Sonnet 4, GPT-4)
+2. **Provide Context**: Drag the `TEST-ANALYSIS.md` file into the chat
+3. **Prompt the Agent**: Use a custom prompt to generate the plan. For example:
+   > "Based on the attached `TEST-ANALYSIS.md`, create a detailed, step-by-step implementation plan for the 'user_auth_testing' epic. Break the work into small, numbered, sequential task files following PHP testing best practices. For each task, define a clear goal and acceptance criteria. Also generate a MANIFEST.md file listing all the files you will create."
+4. **Create Files Manually**: Based on the agent's output, create the directory structure (`docs/epic_user_auth_testing/`) and the corresponding plan, task, and manifest files yourself.
+
+This approach gives you more fine-grained control and is an excellent exercise in prompt engineering.
+
+**Deliverable:** Document the test strategy in `docs/epic_user_auth_testing/TEST_STRATEGY.md`
+
+#### Part 1.4: Detailed Test Plan Generation with Lead Developer
+
+1. **Create the Test Implementation Plan**
    - Start a **new Copilot Chat session**
    - Reference: `#prompt:custom_lead-plan`
         - Or For JetBrains: `/custom_lead-plan`
-   - Add context: `#file:TEST-ANALYSIS.md`
+   - Provide both `TEST-ANALYSIS.md` and `TEST_STRATEGY.md` files as context (if created)
+   - Add context: `#file:docs/TEST-ANALYSIS.md`
+   - Optionally add: `#file:docs/epic_user_auth_testing/TEST_STRATEGY.md` (if created in Part 1.2)
    - Request: "Create a detailed test implementation plan. The epic name is 'user_auth_testing'. Focus on PHP 7.4+, PHPUnit, and PHP security testing best practices."
 
 2. **Review the Generated Plan**
    - The agent creates `docs/epic_user_auth_testing/` containing:
      - `plans/IMPLEMENTATION_PLAN.md`: Testing strategy
-     - `tasks/01_[name].md`, `tasks/02_[name].md`, etc.: Sequential test implementation tasks
+     - `plans/DECISION_LOG.md`: Testing framework and approach decisions
+     - `tasks/01_[name].md`, `tasks/02_[name].md`, etc.: Sequenced tasks like:
+         - Setting up the testing framework and configuration
+         - Writing unit tests for models and services
+         - Writing integration tests for controllers and storage
+         - Creating security-focused test cases (input validation, error handling)
+         - Implementing edge case tests
      - `MANIFEST.md`: Manifest of generated files
-   - Verify tasks are logical, sequential, and appropriately sized
+   - Verify that the tasks are logical, sequential, and appropriately sized
+   - Confirm that all security concerns and edge cases from earlier analysis are covered
 
-#### Part 1.3: Experimenting with Custom Test Planning
+#### Part 1.5: Experimenting with Custom Test Planning (Optional)
 
 Try creating the test plan with your own prompt:
 
@@ -378,7 +447,7 @@ Try creating the test plan with your own prompt:
    - Review the plan and approve with "yes"
    - The agent will write test files, configuration, and helper code
 
-#### Part 2.2: Experimenting with Custom Test Implementation
+#### Part 2.2: Experimenting with Custom Test Implementation (Optional)
 
 Try implementing tests with custom prompts:
 

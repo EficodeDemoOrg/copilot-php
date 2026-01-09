@@ -207,6 +207,12 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 > 
 > **Using #file**: Start typing `#` and begin typing the filename you want to add as context.
 > 
+> **Using #get_errors**: Type `#get_errors` to identify any compile or lint errors in the current file.
+> 
+> **Using #get_terminal_output**: Type `#get_terminal_output` to include the visible output from your terminal window.
+> 
+> **Drag and Drop**: You can also drag files directly from the Explorer view into the chat window to add them as context.
+> 
 
 ### Exercise 3.1: File referencing with chat variables
 
@@ -223,6 +229,25 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 3. **Multiple file Contexts**
    - Compare validation approaches in TaskController.php vs CommentController.php
    - Request: `How does the validation logic in #file differ from #file?`
+   - Note: You can also drag and drop files directly into chat
+
+4. **Error Context Variables**
+   - Use `#get_errors` to reference all errors in your file
+   - Open a file with errors in VS Code
+   - Ask: `#get_errors Explain these errors and how to fix them`
+   - This automatically includes error messages from your Problems panel
+
+5. **Terminal Output Variables**
+   - Use `#get_terminal_output` to reference the output from your terminal
+   - After running a command, ask: `#get_terminal_output What does this output mean?`
+   - Try: `#get_terminal_output Are there any warnings I should address?`
+   - This captures the visible terminal content for analysis
+
+6. **Advanced Context Combinations**
+   - Try: `@project What would be the impact of adding caching to #file:TaskService.php?`
+   - Combine multiple contexts: `#file:TaskController.php #file:TaskService.php How do these classes interact?`
+   - Mix error and file context: `#get_errors #file:TaskController.php Are these errors related to this file?`
+   - Mix terminal output and project context: `#get_terminal_output @project Why is this PHP command failing?`
 
 **Learning Goal:** Master chat variables for precise context control and analysis in development.
 
@@ -270,11 +295,16 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
    - Ask: `What could cause task creation to fail silently?`
    - Request: `How should I debug JSON storage issues?`
 
-2. **Error Handling Improvements**
-   - Ask: `How can I improve error handling throughout this application?`
-   - Request: `Show me best practices for logging in applications`
+2. **Debugging Terminal Output**
+   - After running a failing command, ask: `#get_terminal_output Why did this command fail?`
+   - Try: `#get_terminal_output How do I fix this PHP error?`
+   - Request: `#get_terminal_output What does this error stack trace tell us?`
 
-**Learning Goal:** Develop debugging skills with Copilot assistance.
+3. **Error Handling Improvements**
+   - Ask: `How can I improve error handling throughout this application?`
+   - Request: `Show me best practices for logging in PHP applications`
+
+**Learning Goal:** Develop debugging skills with Copilot assistance and leverage context-aware error analysis.
 
 ---
 
@@ -306,6 +336,27 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
    - `What coding standards and best practices should I implement in this codebase?`
 
 **Learning Goal:** Understand how different expert perspectives can improve your code.
+
+### Exercise 6.3: Code Review Workflow
+
+1. **Setting Up for Code Review**
+   - Open a PHP file you want to review (e.g., `src/Controllers/TaskController.php`)
+   - Add it as context to Copilot Chat
+   - Ask: `Act as a code reviewer and analyze this file for quality, performance, and best practices`
+
+2. **Conducting the Review**
+   - Request specific feedback: `What potential bugs or edge cases exist in this code?`
+   - Ask: `Are there any design pattern violations or anti-patterns here?`
+   - Try: `How does this code compare to PHP best practices and PSR standards?`
+   - Request: `What security vulnerabilities should I address?`
+
+3. **Implementing Feedback**
+   - Switch to Edit mode in Copilot Chat
+   - Provide the original file and the review feedback
+   - Request: `Based on the code review feedback, implement the recommended improvements`
+   - Review the changes and accept them into your workflow
+
+**Learning Goal:** Develop a structured code review process using Copilot to catch issues and improve code quality before committing.
 
 ---
 
@@ -374,30 +425,146 @@ Welcome to your comprehensive GitHub Copilot training journey! These exercises a
 
 ---
 
-## Phase 8: Advanced Prompt Engineering
+## Phase 8: Advanced Prompt Engineering and Agent Workflows
 
-### Exercise 8.1: Prompt Strategies
+### Exercise 8.1: Understanding Custom Agents
 
-### Exercise 8.3: Reusable Prompts
+You can create **custom agents** (`.agent.md` files) that define specialized personas with specific tools, instructions, and behaviors. This repository may include custom agents in `.github/agents/`.
 
-1. **Session Summaries example**
-    - Explore the `.github/prompts/` folder and, for each prompt, read its guide to understand its intended workflow and protocol.
-       - Try session summaries, use `summarize-session.prompt.md` and follow its format for capturing key outcomes and next steps.
-    - Practice saving and reusing these prompts, always adhering to their review, approval, and output formatting requirements.
+1. **Explore Custom Agents (if available)**
+   - Check if `.github/agents/` folder exists in your project
+   - If available, open files like `Implementer.agent.md` or `Lead Developer.agent.md` and review their structure:
+     - Agent description and purpose
+     - Allowed tools and capabilities
+     - Behavioral instructions and protocols
+     - Execution phases and workflows
 
-2. **Thread Dump Example: Critical Context Handoff**
-   - Open `.github/prompts/thread-dump.prompt.md` and review its protocol for context handoff.
-   - Simulate a scenario where your chat context is at maximum capacity and you need to hand off work to a new agent instance.
-   - Use the prompt to generate a final briefing message that includes:
+2. **Using Custom Agents**
+   - Custom agents can be referenced in your Copilot conversations
+   - You can ask Copilot to act according to agent personas: `Act as the Implementer agent and execute this task following strict implementation protocols`
+   - Or reference agent guidelines: `Following the Lead Developer agent guidelines, review this architecture`
+
+3. **Practice with Agent Personas**
+   - Try using different agent personas for different tasks:
+     - **Implementer persona**: Focused on strict, single-task execution
+     - **Lead Developer persona**: Strategic planning and decomposition
+   - Notice how different personas affect the type of responses you get
+
+4. **Creating Your Own Agent Guidelines (Optional)**
+   - Create a `.github/agents/` folder if it doesn't exist
+   - Define agent personas for your team:
+     - Code Reviewer Agent
+     - Documentation Agent
+     - Testing Agent
+     - Security Analyst Agent
+   - Document their responsibilities, tools, and workflows
+
+**Learning Goal:** Understand how custom agent personas extend Copilot's capabilities with specialized workflows.
+
+### Exercise 8.2: Role-Based Collaboration with Agent Personas
+
+1. **Simulate a Lead Developer / Implementer Workflow**
+   
+   **Thread 1: Lead Developer Persona**
+   - Open Copilot Chat
+   - Establish the persona: `Act as a Lead Developer. Your role is to analyze requirements, plan architecture, and decompose features into tasks. You do NOT write production code - you create plans for implementers.`
+   - Request: `I need to add user roles and permissions to this PHP application. Analyze the requirements and create a detailed implementation plan.`
+   - Follow up: `Break down this feature into discrete, actionable tasks for an implementer.`
+   - Save the plan for the next step
+
+   **Thread 2: Implementer Persona**
+   - Open a new Copilot Chat thread or window
+   - Establish the persona: `Act as an Implementer. Your role is to execute specific, well-defined tasks by writing code. You follow instructions precisely and focus on one task at a time.`
+   - Share Task 1 from the Lead Developer plan: `Implement this task: [paste task description]. Focus only on this specific implementation.`
+   - Request: `Generate the code for this task following PHP best practices.`
+   
+   **Back to Lead Developer**
+   - Return to Thread 1 with the implementation
+   - Ask: `Review this implementation. Does it meet the requirements? Are there any issues?`
+   - Get feedback and return to Implementer for refinements
+   - Continue until the feature is complete
+
+2. **Understanding Agent Boundaries**
+   - Notice how Lead Developer refuses to write production code
+   - Observe how Implementer stays focused on single tasks
+   - This separation prevents scope creep and maintains quality
+
+**Learning Goal:** Master role-based collaboration using agent personas that mirror real team dynamics.
+
+### Exercise 8.3: Reusable Prompt File Files
+
+GitHub Copilot supports **prompt files** (`.prompt.md`) that define reusable prompt templates. This repository may include prompts in `.github/prompts/`.
+
+1. **Explore Available Prompt Files**
+   - Check if `.github/prompts/` folder exists in your project
+   - Review available prompts (if any) such as:
+     - Session summaries for capturing outcomes
+     - Thread dumps for context handoff
+     - Implementation templates
+     - Review checklists
+
+2. **Using Prompt Files**
+   - In VS Code, you can reference prompts from the `.github/prompts/` folder
+   - Copy prompt templates and customize them for your needs
+   - Use them consistently across your team for standardized workflows
+
+3. **Session Summaries Example**
+   - If `summarize-session.prompt.md` exists, explore its structure
+   - Try creating a session summary following its format:
+     - Key outcomes and decisions
+     - Completed tasks
+     - Next steps
+     - Blockers or issues
+   - Use this at the end of work sessions for continuity
+
+4. **Thread Dump Example: Critical Context Handoff**
+   - If `thread-dump.prompt.md` exists, review its protocol
+   - Simulate a scenario where your chat context is at maximum capacity
+   - Generate a briefing message that includes:
      - Primary objective of the session
      - Mission log (completed steps, current status)
      - Essential assets (files, data, URLs)
      - Immediate directives (next actions)
      - Constraints & pitfalls (instructions, limitations)
-   - Practice formatting your output as a single, precise text message (not a file or code block), following the template in the prompt.
-   - Discuss how this protocol ensures seamless continuation of work and why it is important for collaborative or multi-agent workflows.
+   - Practice formatting as a precise handoff message
 
-**Learning Goal:** Develop and apply reusable prompt patterns for common tasks, leveraging provided prompt files for consistency and efficiency.
+5. **Creating Your Own Prompt Files (Optional)**
+   - Create a `.github/prompts/` folder if it doesn't exist
+   - Define reusable prompts for common tasks:
+     - Code review checklists
+     - Bug report templates
+     - Feature implementation guides
+     - Testing protocols
+   - Share these with your team for consistency
+
+**Learning Goal:** Leverage reusable prompt files to standardize workflows and ensure consistency across your team.
+
+### Exercise 8.4: Effective Context Management
+
+1. **Context Window Awareness**
+   - Be aware that each chat thread has a limited context window
+   - When a conversation gets long, Copilot may lose earlier context
+   - Monitor your thread length and consider starting fresh when needed
+
+2. **Creating Handoff Documents**
+   - Before closing a complex thread, ask: `Summarize our discussion, decisions, and implementation steps in a format I can use to continue in a new thread`
+   - Save these summaries in your project docs or as comments
+   - Use them to restart conversations with full context
+
+3. **Thread Hygiene Best Practices**
+   - Name or label your chat threads descriptively (if your IDE supports it)
+   - Keep threads focused on single features or problems
+   - Don't mix different concerns in the same thread
+   - Start a new thread when switching to a different task
+   - Use @project at the beginning of new threads for fresh context
+
+4. **Context Refresh Strategies**
+   - When Copilot seems to forget earlier decisions:
+     - Remind it: `Earlier in this thread, we decided to use X pattern`
+     - Reference files: `As shown in #file:TaskController.php, we're using this approach`
+     - Start fresh with a summary: Open new thread with context from previous
+
+**Learning Goal:** Master the art of managing chat context effectively for complex, multi-step development tasks.
 
 ---
 
